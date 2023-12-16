@@ -8,3 +8,7 @@
     --c-persian-blue: 30 64 175;
     --c-buttercup: 245 158 11;
 }
+
+body {
+    @apply bg-disabled text-contrast
+}
