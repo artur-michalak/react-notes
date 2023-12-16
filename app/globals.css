@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    --c-mercury: 229 229 229;
+    --c-cod-gray: 23 23 23;
+    --c-persian-blue: 30 64 175;
+    --c-buttercup: 245 158 11;
+}

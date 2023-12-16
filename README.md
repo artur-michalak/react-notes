@@ -6,15 +6,15 @@
 ![Issues](https://img.shields.io/github/issues/ArturMichalak/react-notes)
 ![License](https://img.shields.io/github/license/ArturMichalak/react-notes)
 
-![NextJS](https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs)
-![Redis](https://img.shields.io/badge/redis-%23DD0031.svg?style=for-the-badge&logo=redis&logoColor=white)
-![Ant-Design](https://img.shields.io/badge/-AntDesign-%230170FE?style=for-the-badge&logo=ant-design&logoColor=white)
+**Personal sticky notes keeper available by a browsers.**
 
 ![Links](https://img.shields.io/badge/links-black?style=for-the-badge)
 [![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)](https://hc-react-notes.vercel.app/)
 [![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)](https://www.figma.com/file/EVbnwlKWG3T13cJvyH8P4L/ReactNotes?type=design&node-id=0%3A1&mode=design&t=XzcZYN7B6PVABOoy-1)
 
-Personal sticky notes keeper available by a browsers.
+![NextJS](https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs)
+![Redis](https://img.shields.io/badge/redis-%23DD0031.svg?style=for-the-badge&logo=redis&logoColor=white)
+![Ant-Design](https://img.shields.io/badge/-AntDesign-%230170FE?style=for-the-badge&logo=ant-design&logoColor=white)
 
 **To start DEV server check [DOCUMENTATION](https://nextjs.org/docs/getting-started/installation#run-the-development-server)**
 
