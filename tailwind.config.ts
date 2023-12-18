@@ -1,10 +1,11 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from "tailwindcss";
 
 const config: Config = {
   content: [
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-    './content/**/*.{js,ts,jsx,tsx,mdx}',
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    "./node_modules/tw-elements/dist/js/**/*.js",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./content/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
@@ -13,9 +14,10 @@ const config: Config = {
         contrast: "rgb(var(--cod-gray) / <alpha-value>)",
         primary: "rgb(var(--c-persian-blue) / <alpha-value>)",
         action: "rgb(var(--c-buttercup) / <alpha-value>)",
-      }
-    }
+      },
+    },
   },
-  plugins: [],
-}
-export default config
+  darkMode: "class",
+  plugins: [require("tw-elements/dist/plugin.cjs")],
+};
+export default config;

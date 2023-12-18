@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { Sofia_Sans } from "next/font/google";
-import "./globals.css";
-import Nav from "@/content/nav";
-import classNames from "classnames";
+import './globals.css';
+
+import classNames from 'classnames';
+import { Sofia_Sans } from 'next/font/google';
+
+import Nav from '@/content/nav';
 
 const sofia = Sofia_Sans({ subsets: ["latin"] });
 
@@ -18,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={classNames(sofia.className, 'flex my-10 mx-8 gap-8')}>
+      <body className={classNames(sofia.className, 'min-h-screen flex flex-col  md:flex-row items-end md:items-start py-10 md:mx-8 gap-8')}>
         <Nav />
         {children}
       </body>
