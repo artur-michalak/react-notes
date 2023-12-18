@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { memo, useEffect, useState } from "react";
+import { FaPlusSquare } from "react-icons/fa";
 import {
   MdOutlineCheckBox,
   MdOutlineSettings,
@@ -9,19 +10,26 @@ import {
 } from "react-icons/md";
 
 import Container from "@/components/container";
+import classNames from "classnames";
+import dispatchEvent from "@/utils/dispatchEvent";
 
 function Nav() {
   const [links] = useState([
     {
-      link: "",
+      Icon: FaPlusSquare,
+      className: "scale-90 hover:scale-95",
+      onClick: () => dispatchEvent("add-note-open-dialog"),
+    },
+    {
+      link: "/",
       Icon: MdStickyNote2,
     },
     {
-      link: "",
+      link: "/",
       Icon: MdOutlineCheckBox,
     },
     {
-      link: "",
+      link: "/",
       Icon: MdOutlineSettings,
     },
   ]);
@@ -35,18 +43,37 @@ function Nav() {
   }, []);
 
   return (
-    <Container type="nav" className="flex md:flex-col gap-2 text-4xl bg-white">
-      {links.map(({ link, Icon }) => (
-        <Link
-          data-te-ripple-init
-          data-te-ripple-color="primary"
-          key={Icon.name}
-          href={link}
-          className="outline-none focus-visible:text-primary hover:scale-105 transition-colors rounded-xl"
-        >
-          <Icon />
-        </Link>
-      ))}
+    <Container type="nav" className="flex md:flex-col gap-2 text-4xl">
+      {links.map(({ link, Icon, className, ...props }) =>
+        link ? (
+          <Link
+            data-te-ripple-init
+            data-te-ripple-color="primary"
+            key={Icon.name}
+            href={link}
+            className={classNames(
+              "outline-none focus-visible:text-primary hover:scale-105 transition-colors rounded-xl",
+              className
+            )}
+            {...props}
+          >
+            <Icon />
+          </Link>
+        ) : (
+          <button
+            data-te-ripple-init
+            data-te-ripple-color="primary"
+            key={Icon.name}
+            className={classNames(
+              "outline-none focus-visible:text-primary hover:scale-105 transition-colors rounded-xl",
+              className
+            )}
+            {...props}
+          >
+            <Icon />
+          </button>
+        )
+      )}
     </Container>
   );
 }
