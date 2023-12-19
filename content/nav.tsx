@@ -1,54 +1,47 @@
 "use client";
 
-import Link from "next/link";
-import { memo, useEffect, useState } from "react";
-import { FaPlusSquare } from "react-icons/fa";
-import {
-  MdOutlineCheckBox,
-  MdOutlineSettings,
-  MdStickyNote2,
-} from "react-icons/md";
+import classNames from 'classnames';
+import { memo, useState } from 'react';
+import { FaPlusSquare } from 'react-icons/fa';
+import { MdOutlineCheckBox, MdOutlineSettings, MdStickyNote2 } from 'react-icons/md';
 
-import Container from "@/components/container";
-import classNames from "classnames";
-import dispatchEvent from "@/utils/dispatchEvent";
+import Container from '@/components/container';
+import RippleButton from '@/components/ripple-button';
+import RippleLink from '@/components/ripple-link';
+import dispatchEvent from '@/utils/dispatchEvent';
 
-function Nav() {
-  const [links] = useState([
-    {
-      Icon: FaPlusSquare,
-      className: "scale-90 hover:scale-95",
-      onClick: () => dispatchEvent("add-note-open-dialog"),
-    },
-    {
-      link: "/",
-      Icon: MdStickyNote2,
-    },
-    {
-      link: "/",
-      Icon: MdOutlineCheckBox,
-    },
-    {
-      link: "/",
-      Icon: MdOutlineSettings,
-    },
-  ]);
+interface NavProps {
+  labels: string[];
+}
 
-  useEffect(() => {
-    const init = async () => {
-      const { Ripple, initTE } = await import("tw-elements");
-      initTE({ Ripple });
-    };
-    init();
-  }, []);
+function Nav(props: NavProps) {
+  const [links] = useState(
+    [
+      {
+        Icon: FaPlusSquare,
+        className: "scale-90 hover:scale-95",
+        onClick: () => dispatchEvent("add-note-open-dialog"),
+      },
+      {
+        link: "/",
+        Icon: MdStickyNote2,
+      },
+      {
+        link: "/",
+        Icon: MdOutlineCheckBox,
+      },
+      {
+        link: "/",
+        Icon: MdOutlineSettings,
+      },
+    ].map((p, i) => ({ ...p, title: props.labels[i] }))
+  );
 
   return (
     <Container type="nav" className="flex md:flex-col gap-2 text-4xl">
       {links.map(({ link, Icon, className, ...props }) =>
         link ? (
-          <Link
-            data-te-ripple-init
-            data-te-ripple-color="primary"
+          <RippleLink
             key={Icon.name}
             href={link}
             className={classNames(
@@ -58,11 +51,9 @@ function Nav() {
             {...props}
           >
             <Icon />
-          </Link>
+          </RippleLink>
         ) : (
-          <button
-            data-te-ripple-init
-            data-te-ripple-color="primary"
+          <RippleButton
             key={Icon.name}
             className={classNames(
               "outline-none focus-visible:text-primary hover:scale-105 transition-colors rounded-xl",
@@ -71,7 +62,7 @@ function Nav() {
             {...props}
           >
             <Icon />
-          </button>
+          </RippleButton>
         )
       )}
     </Container>

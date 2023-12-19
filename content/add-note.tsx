@@ -17,7 +17,6 @@ function AddNote() {
   const handleCreate = () => {
     form.validateFields().then((values) => {
       form.resetFields();
-      console.log(values);
       setOpen(false);
     });
   };
