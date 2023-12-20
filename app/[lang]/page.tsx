@@ -1,41 +1,19 @@
 import List from "@/components/list";
 import AddNote from "@/content/add-note";
 import Item from "@/content/item";
+import getNotes from "@/server-actions/get-notes";
 
-export default function Home() {
+export default async function Home() {
+  const notes = await getNotes();
   return (
     <div className="flex-grow">
       <AddNote />
       <main>
         <List
-          items={[
-            {
-              className: "bg-red-200",
-              children: <Item title="Class Notes" date="Monday 12/12/2023" />,
-              isTask: true,
-            },
-            {
-              children: <Item title="Class Notes" date="Monday 12/12/2023" />,
-            },
-            {
-              children: <Item title="Class Notes" date="Monday 12/12/2023" />,
-            },
-            {
-              children: <Item title="Class Notes" date="Monday 12/12/2023" />,
-            },
-            {
-              children: <Item title="Class Notes" date="Monday 12/12/2023" />,
-            },
-            {
-              children: <Item title="Class Notes" date="Monday 12/12/2023" />,
-            },
-            {
-              children: <Item title="Class Notes" date="Monday 12/12/2023" />,
-            },
-            {
-              children: <Item title="Class Notes" date="Monday 12/12/2023" />,
-            },
-          ].map((props) => ({
+          items={notes.map(({text, createdAt, id}, key) => ({
+            children: <Item title={text.length < 30 ? text : `${text.slice(0, 27)}...`} date={createdAt?.toLocaleDateString()} />,
+            id
+          })).map((props) => ({
             ...props,
             className: [
               "bg-red-200",
