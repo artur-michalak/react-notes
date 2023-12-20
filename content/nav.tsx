@@ -3,14 +3,11 @@
 import classNames from 'classnames';
 import { memo, useState } from 'react';
 import { FaPlusSquare } from 'react-icons/fa';
-import { IoMdRefreshCircle } from "react-icons/io";
+import { IoMdRefreshCircle } from 'react-icons/io';
 import { MdOutlineCheckBox, MdStickyNote2 } from 'react-icons/md';
 
-import Container from '@/components/container';
-import RippleButton from '@/components/ripple-button';
-import RippleLink from '@/components/ripple-link';
+import { Container, RippleButton, RippleLink } from '@/components';
 import dispatchEvent from '@/utils/dispatchEvent';
-import getNotes from '@/server-actions/get-notes';
 
 interface NavProps {
   labels: string[];
@@ -33,9 +30,8 @@ function Nav(props: NavProps) {
         Icon: MdOutlineCheckBox,
       },
       {
-        link: "/",
         Icon: IoMdRefreshCircle,
-        onClick: () => getNotes()
+        onClick: () => dispatchEvent("update-notes"),
       },
     ].map((p, i) => ({ ...p, title: props.labels[i] }))
   );

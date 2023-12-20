@@ -17,6 +17,7 @@ function AddNote() {
   const handleCreate = () => {
     form.validateFields().then((values) => {
       form.resetFields();
+      console.log(values);
       setOpen(false);
     });
   };
@@ -25,7 +26,12 @@ function AddNote() {
     <Modal open={open} onOk={handleCreate} onCancel={() => setOpen(false)}>
       <Form form={form}>
         <h2 className="text-2xl">New note</h2>
-        <Form.Item label="Note" name="note" hasFeedback rules={[{required: true, message: "enter your message"}]}>
+        <Form.Item
+          label="Note"
+          name="note"
+          hasFeedback
+          rules={[{ required: true, message: "enter your message" }]}
+        >
           <TextArea />
         </Form.Item>
         <Form.Item label="Is a task" name="isTask" valuePropName="checked">

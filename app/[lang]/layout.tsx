@@ -4,8 +4,7 @@ import "@/app/globals.css";
 import classNames from "classnames";
 import { useTranslations } from "next-intl";
 import { Sofia_Sans } from "next/font/google";
-
-import Nav from "@/content/nav";
+import { Nav } from "@/content";
 
 const sofia = Sofia_Sans({ subsets: ["latin"] });
 
