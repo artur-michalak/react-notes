@@ -32,8 +32,11 @@ export default function RootLayout({
         )}
       >
         <Providers>
-          <NewNoteDialog />
-          <Nav labels={[t("new"), t("notes"), t("tasks"), t("refresh")]} lang={params.lang} />
+          <NewNoteDialog lang={params.lang} />
+          <Nav
+            labels={[t("new"), t("notes"), t("tasks"), t("refresh")]}
+            lang={params.lang}
+          />
           {children}
         </Providers>
       </body>

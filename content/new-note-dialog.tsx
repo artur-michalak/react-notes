@@ -4,21 +4,39 @@ import { Form, Input, Modal, Checkbox } from "antd";
 import { memo, useCallback, useState } from "react";
 
 import useEventObserver from "@/hooks/useEventObserver";
+import addNote from "@/server-actions/add-note";
+import { revalidate } from "@/utils/revalidate";
+import { useQuery } from "@tanstack/react-query";
+import { getNotes } from "@/server-actions";
+import { Note } from "@/server-actions/get-notes";
+import prepareItems from "@/utils/prepareItems";
 
 const { TextArea } = Input;
 
-function AddNote() {
+interface AddNoteProps {
+  lang: string
+}
+
+function AddNote(props: AddNoteProps) {
   const [open, setOpen] = useState(false);
-  const addNote = useCallback(() => setOpen((o) => !o), []);
-  useEventObserver("add-note-open-dialog", addNote);
+  const openNoteDialog = useCallback(() => setOpen((o) => !o), []);
+  useEventObserver("add-note-open-dialog", openNoteDialog);
 
   const [form] = Form.useForm();
 
+  const { refetch } = useQuery({
+    queryKey: ["notes"],
+    queryFn: () =>
+      getNotes().then((notes: Note[]) => prepareItems(notes, props.lang)),
+  });
+
   const handleCreate = () => {
     form.validateFields().then((values) => {
+      addNote(values.note);
       form.resetFields();
-      console.log(values);
       setOpen(false);
+      revalidate("notes");
+      refetch();
     });
   };
 
