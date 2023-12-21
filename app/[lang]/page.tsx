@@ -11,8 +11,6 @@ export default async function Home({ params }: { params: { lang: string } }) {
   return (
     <Hydrate state={dehydratedState}>
       <main className="flex-grow">
-        <div>API {process.env.API_URL}</div>
-        <div>VERCEL {process.env.VERCEL_URL}</div>
         <List lang={params.lang} />
       </main>
     </Hydrate>
