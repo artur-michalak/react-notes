@@ -30,7 +30,7 @@ export async function GET() {
   const redis = await createRedisInstance();
   const notes = await redis.hgetall("notes");
   const response = Object.keys(notes).reduce(
-    (dst, cur) => [...dst, { id: cur, ...JSON.parse(notes[cur]) }],
+    (dst, cur) => [...dst, { id: cur, ...(JSON.parse(notes[cur]) || {}) }],
     [] as { id: string; [key: string]: unknown }[]
   );
 
