@@ -1,15 +1,15 @@
 "use client";
 
-import { Form, Input, Modal, Checkbox } from "antd";
-import { memo, useCallback, useState } from "react";
+import { Checkbox, Form, Input, Modal } from 'antd';
+import { memo, useCallback, useState } from 'react';
 
-import useEventObserver from "@/hooks/useEventObserver";
-import addNote from "@/server-actions/add-note";
-import { revalidate } from "@/utils/revalidate";
-import { useQuery } from "@tanstack/react-query";
-import { getNotes } from "@/server-actions";
-import { Note } from "@/server-actions/get-notes";
-import prepareItems from "@/utils/prepareItems";
+import useEventObserver from '@/hooks/useEventObserver';
+import { getNotes } from '@/server-actions';
+import addNote from '@/server-actions/add-note';
+import { Note } from '@/server-actions/get-notes';
+import prepareItems from '@/utils/prepareItems';
+import revalidate from '@/utils/revalidate';
+import { useQuery } from '@tanstack/react-query';
 
 const { TextArea } = Input;
 

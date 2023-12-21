@@ -1,18 +1,17 @@
 "use client";
 
-import classNames from "classnames";
-import { memo, useState } from "react";
-import { FaPlusSquare } from "react-icons/fa";
-import { IoMdRefreshCircle } from "react-icons/io";
-import { MdOutlineCheckBox, MdStickyNote2 } from "react-icons/md";
+import classNames from 'classnames';
+import { memo, useState } from 'react';
+import { FaPlusSquare } from 'react-icons/fa';
+import { IoMdRefreshCircle } from 'react-icons/io';
+import { MdOutlineCheckBox, MdStickyNote2 } from 'react-icons/md';
 
-import { Container, RippleButton, RippleLink } from "@/components";
-import dispatchEvent from "@/utils/dispatchEvent";
-import { useQuery } from "@tanstack/react-query";
-import { getNotes } from "@/server-actions";
-import prepareItems from "@/utils/prepareItems";
-import { Note } from "@/server-actions/get-notes";
-import { revalidate } from "@/utils/revalidate";
+import { Container, RippleButton, RippleLink } from '@/components';
+import { getNotes, Note } from '@/server-actions';
+import dispatchEvent from '@/utils/dispatchEvent';
+import prepareItems from '@/utils/prepareItems';
+import revalidate from '@/utils/revalidate';
+import { useQuery } from '@tanstack/react-query';
 
 interface NavProps {
   labels: string[];
