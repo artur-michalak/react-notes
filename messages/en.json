@@ -1,6 +1,6 @@
 {
-    "title": "add new note",
+    "new": "add new note",
     "notes": "notes",
     "tasks": "tasks",
-    "settings": "settings"
+    "refresh": "settings"
 }

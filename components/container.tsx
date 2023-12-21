@@ -16,10 +16,7 @@ function Container({
   return createElement(
     type || "div",
     {
-      className: classNames(
-        className,
-        size === "big" ? "p-6" : "p-2"
-      ),
+      className: classNames(className, size === "big" ? "p-6" : "p-2"),
       ...props,
     },
     children

@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
-import "@/app/globals.css";
+import '@/app/globals.css';
 
-import classNames from "classnames";
-import { useTranslations } from "next-intl";
-import { Sofia_Sans } from "next/font/google";
-import { Nav } from "@/content";
+import classNames from 'classnames';
+import { useTranslations } from 'next-intl';
+import { Sofia_Sans } from 'next/font/google';
+
+import { Nav, NewNoteDialog } from '@/content';
+import Providers from '@/content/provider';
 
 const sofia = Sofia_Sans({ subsets: ["latin"] });
 
@@ -29,8 +31,11 @@ export default function RootLayout({
           "min-h-screen flex flex-col md:flex-row items-end md:items-stretch"
         )}
       >
-        <Nav labels={[t("title"), t("notes"), t("tasks"), t("settings")]} />
-        {children}
+        <Providers>
+          <NewNoteDialog />
+          <Nav labels={[t("new"), t("notes"), t("tasks"), t("refresh")]} lang={params.lang} />
+          {children}
+        </Providers>
       </body>
     </html>
   );

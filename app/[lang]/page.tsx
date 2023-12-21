@@ -1,16 +1,18 @@
 import { List } from '@/components';
-import { NewNoteDialog } from '@/content';
+import Hydrate from '@/content/hydrate';
 import { getNotes } from '@/server-actions';
-import prepareItems from '@/utils/prepareItems';
+import getQueryClient from '@/utils/getQueryClient';
+import { dehydrate } from '@tanstack/react-query';
 
 export default async function Home({ params }: { params: { lang: string } }) {
-  const notes = await getNotes();
+  const queryClient = getQueryClient();
+  await queryClient.prefetchQuery({ queryKey: ["notes"], queryFn: getNotes });
+  const dehydratedState = dehydrate(queryClient);
   return (
-    <div className="flex-grow">
-      <NewNoteDialog />
-      <main>
-        <List items={prepareItems(notes, params.lang)} lang={params.lang} />
+    <Hydrate state={dehydratedState}>
+      <main className="flex-grow">
+        <List lang={params.lang} />
       </main>
-    </div>
+    </Hydrate>
   );
 }
