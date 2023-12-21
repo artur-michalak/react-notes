@@ -11,7 +11,7 @@ export default async function Home({ params }: { params: { lang: string } }) {
   return (
     <Hydrate state={dehydratedState}>
       <main className="flex-grow">
-        {process.env.API_URL}
+        {JSON.stringify({env: process.env.API_URL})}
         <List lang={params.lang} />
       </main>
     </Hydrate>
