@@ -8,7 +8,7 @@ export interface Note {
 
 export default async function getNotes() {
   try {
-    const res = await fetch(`${process.env.API_URL || `https://${process.env.VERCEL_URL}`}/api/notes`, {
+    const res = await fetch(`${process.env.API_URL || `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`}/api/notes`, {
       next: { tags: ["notes"] },
     })
       .then((res) => res.json())
