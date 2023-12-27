@@ -8,14 +8,12 @@ export interface Note {
 
 export default async function getNotes() {
   try {
-    const res = fetch(
-      `${process.env.API_URL || `https://${process.env.VERCEL_URL}`}/api/notes`,
-      {
-        next: { tags: ["notes"] },
-        redirect: 'follow',
-        credentials: 'same-origin'
-      }
-    );
+    const apiURL = process.env.API_URL;
+    if (!apiURL) throw new Error("invalid api url");
+
+    const res = fetch(apiURL, {
+      next: { tags: ["notes"] },
+    });
 
     console.log(await res);
 
