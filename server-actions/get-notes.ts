@@ -11,7 +11,7 @@ export default async function getNotes() {
     const apiURL = process.env.API_URL;
     if (!apiURL) throw new Error("invalid api url");
 
-    const res = fetch(apiURL, {
+    const res = fetch(`${apiURL}/notes`, {
       next: { tags: ["notes"] },
     });
 
