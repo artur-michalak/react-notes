@@ -8,14 +8,20 @@ export interface Note {
 
 export default async function getNotes() {
   try {
-    const res = await fetch(`${process.env.API_URL || `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`}/api/notes`, {
-      next: { tags: ["notes"] },
-    })
+    const res = fetch(
+      `${process.env.API_URL || `https://${process.env.VERCEL_URL}`}/api/notes`,
+      {
+        next: { tags: ["notes"] },
+      }
+    );
+
+    console.log(await res);
+
+    return await res
       .then((res) => res.json())
       .then((res: Note[]) =>
         res.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1))
       );
-    return res;
   } catch (error) {
     throw error;
   }
