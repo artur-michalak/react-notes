@@ -37,7 +37,6 @@ export default function RootLayout({
             labels={[t("new"), t("notes"), t("tasks"), t("refresh")]}
             lang={params.lang}
           />
-          https://{process.env.NEXT_PUBLIC_VERCEL_URL}/api/notes
           {children}
         </Providers>
       </body>
