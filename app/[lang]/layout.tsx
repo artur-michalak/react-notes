@@ -37,7 +37,6 @@ export default function RootLayout({
             labels={[t("new"), t("notes"), t("tasks"), t("refresh")]}
             lang={params.lang}
           />
-          {process.env.VERCEL_URL}
           {children}
         </Providers>
       </body>
