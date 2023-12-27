@@ -8,7 +8,8 @@ export default async function addNote(text: string, id?: string) {
       method: "POST",
       next: { tags: ["notes"] },
       body: JSON.stringify({ id, payload: { text } }),
-      redirect: 'follow'
+      redirect: 'follow',
+      credentials: 'same-origin'
     });
     revalidateTag("notes");
   } catch (error) {
