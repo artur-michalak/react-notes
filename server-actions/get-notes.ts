@@ -13,15 +13,13 @@ export default async function getNotes() {
 
     const res = fetch(`${apiURL}/notes`, {
       next: { tags: ["notes"] },
-    });
-
-    console.log(await res);
-
-    return await res
+    })
       .then((res) => res.json())
       .then((res: Note[]) =>
         res.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1))
       );
+
+    return res;
   } catch (error) {
     throw error;
   }

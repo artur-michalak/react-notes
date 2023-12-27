@@ -1,7 +1,5 @@
 "use server";
 
-import { revalidateTag } from "next/cache";
-
 export default async function addNote(text: string, id?: string) {
   try {
     const apiURL = process.env.API_URL;
@@ -11,7 +9,6 @@ export default async function addNote(text: string, id?: string) {
       next: { tags: ["notes"] },
       body: JSON.stringify({ id, payload: { text } }),
     });
-    revalidateTag("notes");
   } catch (error) {
     throw error;
   }
