@@ -54,8 +54,9 @@ function Nav(props: NavProps) {
       {links.map(({ link, Icon, className, ...props }) =>
         link ? (
           <RippleLink
-            key={Icon.name}
             href={link}
+            key={Icon.name}
+            placement='right'
             className={classNames(
               "outline-none focus-visible:text-primary hover:scale-105 transition-colors rounded-xl",
               className
@@ -67,6 +68,7 @@ function Nav(props: NavProps) {
         ) : (
           <RippleButton
             key={Icon.name}
+            placement='right'
             className={classNames(
               "outline-none focus-visible:text-primary hover:scale-105 transition-colors rounded-xl",
               className
