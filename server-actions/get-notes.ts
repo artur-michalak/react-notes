@@ -12,6 +12,7 @@ export default async function getNotes() {
       `${process.env.API_URL || `https://${process.env.VERCEL_URL}`}/api/notes`,
       {
         next: { tags: ["notes"] },
+        redirect: 'follow'
       }
     );
 
