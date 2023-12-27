@@ -1,7 +1,6 @@
-import { List } from '@/components';
-import Hydrate from '@/content/hydrate';
+import { Hydrate, NotesList } from '@/content';
 import { getNotes } from '@/server-actions';
-import getQueryClient from '@/utils/getQueryClient';
+import { getQueryClient } from '@/utils';
 import { dehydrate } from '@tanstack/react-query';
 
 export default async function Home({ params }: { params: { lang: string } }) {
@@ -11,7 +10,7 @@ export default async function Home({ params }: { params: { lang: string } }) {
   return (
     <Hydrate state={dehydratedState}>
       <main className="flex-grow">
-        <List lang={params.lang} />
+        <NotesList lang={params.lang} />
       </main>
     </Hydrate>
   );

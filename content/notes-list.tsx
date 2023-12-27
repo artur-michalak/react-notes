@@ -1,16 +1,17 @@
 "use client";
 
-import Container from "@/components/container";
-import { useQuery } from "@tanstack/react-query";
+import { Container } from "@/components";
 import { getNotes } from "@/server-actions";
-import prepareItems from "@/utils/prepareItems";
-import { Note } from "@/server-actions/get-notes";
+import { prepareItems } from "@/utils";
+import { useQuery } from "@tanstack/react-query";
+
+import type { Note } from "@/server-actions";
 
 interface ListProps {
   lang: string;
 }
 
-function List(props: ListProps) {
+function NotesList(props: ListProps) {
   const { data } = useQuery({
     queryKey: ["notes"],
     queryFn: () =>
@@ -35,4 +36,4 @@ function List(props: ListProps) {
   );
 }
 
-export default List;
+export default NotesList;

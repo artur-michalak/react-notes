@@ -3,7 +3,7 @@
 import type { RedisOptions } from "ioredis";
 import Redis from 'ioredis';
 
-import { tryParseInt } from '@/utils/tryParseInt';
+import { tryParseInt } from '@/utils';
 
 const defaultConfig = {
   host: process.env.REDIS_HOST,

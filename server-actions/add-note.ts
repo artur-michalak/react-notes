@@ -1,6 +1,6 @@
 "use server";
 
-export default async function addNote(text: string, id?: string) {
+async function addNote(text: string, id?: string) {
   try {
     const apiURL = process.env.API_URL;
     if (!apiURL) throw new Error("invalid api url");
@@ -13,3 +13,5 @@ export default async function addNote(text: string, id?: string) {
     throw error;
   }
 }
+
+export default addNote;

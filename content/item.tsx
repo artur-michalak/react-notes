@@ -2,14 +2,20 @@ import { memo } from "react";
 
 interface ItemProps {
   title: string;
-  date: string;
+  createdAt: Date;
+  lang: string;
 }
 
-function Item(props: ItemProps) {
+function Item({ createdAt, lang, title }: ItemProps) {
+  const date = new Date(createdAt);
+  const dateString = `${date.toLocaleDateString(lang, {
+    weekday: "long",
+  })}, ${date.toLocaleDateString(lang)}`;
+
   return (
     <>
-      <h2 className="text-2xl">{props.title}</h2>
-      <p>{props.date}</p>
+      <h2 className="text-2xl max-h-9 text-ellipsis">{title}</h2>
+      <time dateTime={date.toISOString().substring(0, 10)}>{dateString}</time>
     </>
   );
 }

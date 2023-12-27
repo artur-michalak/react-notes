@@ -8,14 +8,12 @@ import { MdOutlineCheckBox, MdStickyNote2 } from 'react-icons/md';
 
 import { Container, RippleButton, RippleLink } from '@/components';
 import { getNotes, Note } from '@/server-actions';
-import dispatchEvent from '@/utils/dispatchEvent';
-import prepareItems from '@/utils/prepareItems';
-import revalidate from '@/utils/revalidate';
+import { dispatchEvent, prepareItems, revalidate } from '@/utils';
 import { useQuery } from '@tanstack/react-query';
 
 interface NavProps {
   labels: string[];
-  lang: string
+  lang: string;
 }
 
 function Nav(props: NavProps) {
@@ -42,7 +40,7 @@ function Nav(props: NavProps) {
       {
         Icon: IoMdRefreshCircle,
         onClick: () => {
-          revalidate('notes')
+          revalidate("notes");
           refetch();
         },
       },
@@ -56,7 +54,7 @@ function Nav(props: NavProps) {
           <RippleLink
             href={link}
             key={Icon.name}
-            placement='right'
+            placement="right"
             className={classNames(
               "outline-none focus-visible:text-primary hover:scale-105 transition-colors rounded-xl",
               className
@@ -68,7 +66,7 @@ function Nav(props: NavProps) {
         ) : (
           <RippleButton
             key={Icon.name}
-            placement='right'
+            placement="right"
             className={classNames(
               "outline-none focus-visible:text-primary hover:scale-105 transition-colors rounded-xl",
               className

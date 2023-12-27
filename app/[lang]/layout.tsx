@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { useTranslations } from 'next-intl';
 import { Sofia_Sans } from 'next/font/google';
 
-import { Nav, NewNoteDialog } from '@/content';
+import { Nav, NoteDialog } from '@/content';
 import Providers from '@/content/provider';
 
 const sofia = Sofia_Sans({ subsets: ["latin"] });
@@ -32,7 +32,7 @@ export default function RootLayout({
         )}
       >
         <Providers>
-          <NewNoteDialog lang={params.lang} />
+          <NoteDialog lang={params.lang} />
           <Nav
             labels={[t("new"), t("notes"), t("tasks"), t("refresh")]}
             lang={params.lang}

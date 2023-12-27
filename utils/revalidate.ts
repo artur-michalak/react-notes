@@ -2,8 +2,8 @@
 
 import { revalidateTag } from "next/cache";
 
-export const revalidate = (tag: string) => {
+function revalidate(tag: string) {
   revalidateTag(tag);
-};
+}
 
-export default revalidate
+export default revalidate;
