@@ -8,7 +8,7 @@ interface CatalogItem<T = Object> {
   payload: T;
 }
 
-type NoteProps = { text: string; createdAt: Date };
+type NoteProps = { note: string; isTask: boolean; createdAt: Date };
 
 export async function POST(request: Request) {
   const redis = await createRedisInstance();

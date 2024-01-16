@@ -1,4 +1,4 @@
-import { Hydrate, NotesList } from '@/content';
+import { Hydrate, NotesList } from '@/fragments';
 import { getNotes } from '@/server-actions';
 import { getQueryClient } from '@/utils';
 import { dehydrate } from '@tanstack/react-query';

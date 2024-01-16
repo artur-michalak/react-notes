@@ -1,15 +1,16 @@
 "use client";
 
-import classNames from 'classnames';
-import { memo, useState } from 'react';
-import { FaPlusSquare } from 'react-icons/fa';
-import { IoMdRefreshCircle } from 'react-icons/io';
-import { MdOutlineCheckBox, MdStickyNote2 } from 'react-icons/md';
+import classNames from "classnames";
+import { memo, useState } from "react";
+import { FaPlusSquare } from "react-icons/fa";
+import { IoMdRefreshCircle } from "react-icons/io";
+import { MdOutlineCheckBox, MdStickyNote2 } from "react-icons/md";
 
-import { Container, RippleButton, RippleLink } from '@/components';
-import { getNotes, Note } from '@/server-actions';
-import { dispatchEvent, prepareItems, revalidate } from '@/utils';
-import { useQuery } from '@tanstack/react-query';
+import { Container, RippleButton, RippleLink } from "@/components";
+import { useDispatch } from "@/hooks";
+import { getNotes, Note } from "@/server-actions";
+import { prepareItems, revalidate } from "@/utils";
+import { useQuery } from "@tanstack/react-query";
 
 interface NavProps {
   labels: string[];
@@ -17,6 +18,7 @@ interface NavProps {
 }
 
 function Nav(props: NavProps) {
+  const dispatch = useDispatch();
   const { refetch } = useQuery({
     queryKey: ["notes"],
     queryFn: () =>
@@ -27,7 +29,15 @@ function Nav(props: NavProps) {
       {
         Icon: FaPlusSquare,
         className: "scale-90 hover:scale-95",
-        onClick: () => dispatchEvent("add-note-open-dialog"),
+        onClick: () => {
+          dispatch({
+            type: "dialog/set",
+            payload: {
+              note: "",
+              isTask: false
+            },
+          });
+        },
       },
       {
         link: "/",

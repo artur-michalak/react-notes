@@ -1,1 +1,1 @@
-export { default as dialogReducer } from "./dialog";
+export { default as dialog } from "./dialog";

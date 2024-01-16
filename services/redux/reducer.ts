@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import { dialogReducer } from "./reducers";
+import { dialog } from "./reducers";
 
 export const rootReducer = combineReducers({
-  dialogReducer,
+  dialog,
 });

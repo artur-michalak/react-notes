@@ -1,20 +1,22 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
 
 type DialogDefault = {
-  content?: string;
-  isTask: false;
+  note?: string;
+  isTask: boolean;
   id?: string;
 };
-const dialogDefault: DialogDefault = {
-  content: undefined,
+export const dialogDefault: DialogDefault = {
+  note: undefined,
   isTask: false,
   id: undefined,
 };
-const setDialog = createAction<DialogDefault>("SET_DIALOG");
+const setDialog = createAction<DialogDefault>("dialog/set");
 
 const reducer = createReducer(dialogDefault, (builder) => {
   builder.addCase(setDialog, (state, action) => {
-    state = { ...dialogDefault, ...action.payload };
+    state.id = action.payload.id;
+    state.isTask = action.payload.isTask;
+    state.note = action.payload.note;
   });
 });
 

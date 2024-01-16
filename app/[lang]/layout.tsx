@@ -5,8 +5,8 @@ import classNames from 'classnames';
 import { useTranslations } from 'next-intl';
 import { Sofia_Sans } from 'next/font/google';
 
-import { Nav, NoteDialog } from '@/content';
-import Providers from '@/content/provider';
+import { Nav, NoteDialog } from '@/fragments';
+import Providers from '@/fragments/provider';
 
 const sofia = Sofia_Sans({ subsets: ["latin"] });
 

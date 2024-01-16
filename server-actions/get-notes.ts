@@ -4,7 +4,8 @@ import { BaseUrl } from "@/utils";
 
 export interface Note {
   id: string;
-  text: string;
+  note: string;
+  isTask: boolean;
   createdAt: Date;
 }
 

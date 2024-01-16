@@ -4,7 +4,7 @@ const config: Config = {
   content: [
     "./node_modules/tw-elements/dist/js/**/*.js",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./content/**/*.{js,ts,jsx,tsx,mdx}",
+    "./fragments/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {

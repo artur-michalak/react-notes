@@ -1,14 +1,15 @@
 "use client";
 
 import { Checkbox, Form, Input, Modal } from "antd";
-import { memo, useCallback, useState } from "react";
+import { memo } from "react";
 
-import useEventObserver from "@/hooks/useEventObserver";
+import { useDispatch, useSelector } from "@/hooks";
 import { addNote, getNotes } from "@/server-actions";
 import { prepareItems, revalidate } from "@/utils";
 import { useQuery } from "@tanstack/react-query";
 
 import type { Note } from "@/server-actions";
+import { dialogDefault } from "@/services/redux";
 const { TextArea } = Input;
 
 interface NoteDialogProps {
@@ -16,11 +17,9 @@ interface NoteDialogProps {
 }
 
 function NoteDialog(props: NoteDialogProps) {
-  const [open, setOpen] = useState(false);
-  const openNoteDialog = useCallback(() => setOpen(true), []);
-  useEventObserver("add-note-open-dialog", openNoteDialog);
-
   const [form] = Form.useForm();
+  const dialog = useSelector((state) => state.dialog);
+  const dispatch = useDispatch();
 
   const { refetch } = useQuery({
     queryKey: ["notes"],
@@ -30,16 +29,20 @@ function NoteDialog(props: NoteDialogProps) {
 
   const handleCreate = () => {
     form.validateFields().then((values) => {
-      addNote(values.note);
+      addNote(values.note, values.isTask);
+      dispatch({ type: "dialog/set", payload: dialogDefault })
       form.resetFields();
-      setOpen(false);
       revalidate("notes");
       refetch();
     });
   };
 
   return (
-    <Modal open={open} onOk={handleCreate} onCancel={() => setOpen(false)}>
+    <Modal
+      open={dialog.note !== undefined}
+      onOk={handleCreate}
+      onCancel={() => dispatch({ type: "dialog/set", payload: dialogDefault })}
+    >
       <Form form={form}>
         <h2 className="text-2xl">New note</h2>
         <Form.Item
