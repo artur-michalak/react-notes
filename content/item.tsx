@@ -14,7 +14,7 @@ function Item({ createdAt, lang, title }: ItemProps) {
 
   return (
     <>
-      <h2 className="text-2xl max-h-9 text-ellipsis">{title}</h2>
+      <h2 className="text-2xl text-ellipsis">{title}</h2>
       <time dateTime={date.toISOString().substring(0, 10)}>{dateString}</time>
     </>
   );

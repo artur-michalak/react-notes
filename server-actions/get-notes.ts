@@ -1,5 +1,7 @@
 "use server";
 
+import { BaseUrl } from "@/utils";
+
 export interface Note {
   id: string;
   text: string;
@@ -8,7 +10,7 @@ export interface Note {
 
 export default async function getNotes() {
   try {
-    const apiURL = process.env.API_URL;
+    const apiURL = BaseUrl.api;
     if (!apiURL) throw new Error("invalid api url");
 
     const res = fetch(`${apiURL}/notes`, {

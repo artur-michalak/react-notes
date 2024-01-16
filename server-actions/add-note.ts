@@ -1,8 +1,10 @@
 "use server";
 
+import { BaseUrl } from "@/utils";
+
 async function addNote(text: string, id?: string) {
   try {
-    const apiURL = process.env.API_URL;
+    const apiURL = BaseUrl.api;
     if (!apiURL) throw new Error("invalid api url");
     await fetch(`${apiURL}/notes`, {
       method: "POST",
