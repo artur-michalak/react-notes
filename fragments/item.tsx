@@ -6,9 +6,10 @@ interface ItemProps {
   isTask: boolean;
   createdAt: Date;
   lang: string;
+  id: string
 }
 
-function Item({ createdAt, lang, title, ...props }: ItemProps) {
+function Item({ createdAt, lang, title, isTask, id }: ItemProps) {
   const date = new Date(createdAt);
   const dateString = `${date.toLocaleDateString(lang, {
     weekday: "long",
@@ -16,11 +17,10 @@ function Item({ createdAt, lang, title, ...props }: ItemProps) {
 
   return (
     <>
-      {JSON.stringify(props)}
       <div className="text-2xl text-ellipsis">{title}</div>
       <div className="flex justify-between gap-4">
         <time dateTime={date.toISOString().substring(0, 10)}>{dateString}</time>
-        <NoteActions />
+        <NoteActions isTask={isTask} note={title} id={id} />
       </div>
     </>
   );

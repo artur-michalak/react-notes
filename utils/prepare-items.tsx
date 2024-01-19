@@ -5,7 +5,7 @@ export default function prepareItems(notes: Note[], lang: string) {
   return notes.map(({ note, createdAt, isTask, id }) => {
     return {
       id,
-      children: <Item title={note} createdAt={createdAt} isTask={isTask} lang={lang} />,
+      children: <Item title={note} createdAt={createdAt} isTask={isTask} id={id} lang={lang} />,
     };
   });
 }

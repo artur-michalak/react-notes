@@ -38,6 +38,7 @@ function NoteDialog(props: NoteDialogProps) {
   };
 
   useEffect(() => {
+    console.log(dialog)
     form.setFieldsValue({
       id: dialog.id,
       note: dialog.note,
