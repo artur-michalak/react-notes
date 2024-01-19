@@ -1,4 +1,5 @@
 import { memo } from "react";
+import NoteActions from "./note-actions";
 
 interface ItemProps {
   title: string;
@@ -17,7 +18,10 @@ function Item({ createdAt, lang, title, ...props }: ItemProps) {
     <>
       {JSON.stringify(props)}
       <div className="text-2xl text-ellipsis">{title}</div>
-      <time dateTime={date.toISOString().substring(0, 10)}>{dateString}</time>
+      <div className="flex justify-between gap-4">
+        <time dateTime={date.toISOString().substring(0, 10)}>{dateString}</time>
+        <NoteActions />
+      </div>
     </>
   );
 }

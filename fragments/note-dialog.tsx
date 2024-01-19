@@ -1,7 +1,7 @@
 "use client";
 
 import { Checkbox, Form, Input, Modal } from "antd";
-import { memo } from "react";
+import { memo, useEffect } from "react";
 
 import { useDispatch, useSelector } from "@/hooks";
 import { addNote, getNotes } from "@/server-actions";
@@ -30,12 +30,20 @@ function NoteDialog(props: NoteDialogProps) {
   const handleCreate = () => {
     form.validateFields().then((values) => {
       addNote(values.note, values.isTask);
-      dispatch({ type: "dialog/set", payload: dialogDefault })
+      dispatch({ type: "dialog/set", payload: dialogDefault });
       form.resetFields();
       revalidate("notes");
       refetch();
     });
   };
+
+  useEffect(() => {
+    form.setFieldsValue({
+      id: dialog.id,
+      note: dialog.note,
+      isTask: dialog.isTask,
+    });
+  }, [dialog.note, dialog.isTask, dialog.id, form]);
 
   return (
     <Modal
