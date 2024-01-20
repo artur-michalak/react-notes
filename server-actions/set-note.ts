@@ -2,7 +2,7 @@
 
 import { BaseUrl } from "@/utils";
 
-async function addNote(note: string, isTask?: boolean, id?: string) {
+async function setNote(note: string, isTask?: boolean, id?: string) {
   try {
     const apiURL = BaseUrl.api;
     if (!apiURL) throw new Error("invalid api url");
@@ -16,4 +16,4 @@ async function addNote(note: string, isTask?: boolean, id?: string) {
   }
 }
 
-export default addNote;
+export default setNote;

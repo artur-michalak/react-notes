@@ -23,6 +23,9 @@ export async function POST(request: Request) {
   data.payload.createdAt = new Date();
 
   await redis.hset("notes", data.id, JSON.stringify(data.payload));
+
+  redis.disconnect();
+
   return NextResponse.json(data.payload);
 }
 
@@ -34,5 +37,21 @@ export async function GET() {
     [] as { id: string; [key: string]: unknown }[]
   );
 
+  redis.disconnect();
+
   return NextResponse.json(response);
+}
+
+export async function DELETE(request: Request) {
+  const redis = await createRedisInstance();
+  const data: CatalogItem<NoteProps> = await request.json();
+  const note = await redis.hget("notes", data.id);
+
+  if (note) {
+    await redis.del(data.id);
+  }
+
+  redis.disconnect();
+
+  return NextResponse.json(data.id);
 }

@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import '@/app/globals.css';
+import "@/app/globals.css";
 
-import classNames from 'classnames';
-import { useTranslations } from 'next-intl';
-import { Sofia_Sans } from 'next/font/google';
+import classNames from "classnames";
+import { useTranslations } from "next-intl";
+import { Sofia_Sans } from "next/font/google";
 
-import { Nav, NoteDialog } from '@/fragments';
-import Providers from '@/fragments/provider';
+import { Nav, NoteDialog } from "@/fragments";
+import Providers from "@/fragments/provider";
+import NoteModal from "@/fragments/note-modal";
 
 const sofia = Sofia_Sans({ subsets: ["latin"] });
 
@@ -33,6 +34,7 @@ export default function RootLayout({
       >
         <Providers>
           <NoteDialog lang={params.lang} />
+          <NoteModal lang={params.lang} />
           <Nav
             labels={[t("new"), t("notes"), t("tasks"), t("refresh")]}
             lang={params.lang}

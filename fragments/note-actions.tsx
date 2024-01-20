@@ -24,7 +24,13 @@ function NoteActions({note, isTask, id}: NoteActionsProps) {
           })}>
         <FaPencil />
       </button>
-      <button>
+      <button onClick={() => dispatch({
+            type: "modal/set",
+            payload: {
+              note,
+              id
+            },
+          })}>
         <FaTrash />
       </button>
     </div>

@@ -4,7 +4,7 @@ import { Checkbox, Form, Input, Modal } from "antd";
 import { memo, useEffect } from "react";
 
 import { useDispatch, useSelector } from "@/hooks";
-import { addNote, getNotes } from "@/server-actions";
+import { setNote, getNotes } from "@/server-actions";
 import { prepareItems, revalidate } from "@/utils";
 import { useQuery } from "@tanstack/react-query";
 
@@ -29,7 +29,7 @@ function NoteDialog(props: NoteDialogProps) {
 
   const handleCreate = () => {
     form.validateFields().then((values) => {
-      addNote(values.note, values.isTask);
+      setNote(values.note, values.isTask, values.id);
       dispatch({ type: "dialog/set", payload: dialogDefault });
       form.resetFields();
       revalidate("notes");
@@ -38,7 +38,6 @@ function NoteDialog(props: NoteDialogProps) {
   };
 
   useEffect(() => {
-    console.log(dialog)
     form.setFieldsValue({
       id: dialog.id,
       note: dialog.note,
@@ -54,6 +53,9 @@ function NoteDialog(props: NoteDialogProps) {
     >
       <Form form={form}>
         <h2 className="text-2xl">New note</h2>
+        <Form.Item name="id" noStyle>
+          <Input type="hidden" />
+        </Form.Item>
         <Form.Item
           label="Note"
           name="note"
